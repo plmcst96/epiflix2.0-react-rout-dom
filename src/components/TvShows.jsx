@@ -1,0 +1,49 @@
+import { useEffect, useState } from "react"
+import { Card, Col, Container, Row } from "react-bootstrap"
+
+const TvShows = ({ idSearch }) => {
+  const [movies, setMovies] = useState([])
+
+  const getAllMovies = async () => {
+    try {
+      const res = await fetch(
+        "http://www.omdbapi.com/?i=tt3896198&apikey=e2e8cced&s=" + idSearch
+      )
+      if (res.ok) {
+        const data = await res.json()
+        console.log(data)
+        setMovies(data.Search)
+      } else {
+        throw new Error("Errrore nel caricamento fetch")
+      }
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
+  useEffect(() => {
+    getAllMovies()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  return (
+    <Container fluid>
+      <Row>
+        {movies.map((movie) => (
+          <Col className="col-md-4 col-lg-2 px-1 mx-3" key={movie.imdbID}>
+            <Card className="h-100 bg-black my-3">
+              <Card.Img
+                variant="top"
+                src={movie.Poster}
+                alt={movie.Title}
+                className="h-100 moviesImg my-2"
+              />
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </Container>
+  )
+}
+
+export default TvShows
