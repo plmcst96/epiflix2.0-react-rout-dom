@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Card, Col, Container, Row } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 const TvShows = ({ idSearch }) => {
   const [movies, setMovies] = useState([])
@@ -32,12 +33,14 @@ const TvShows = ({ idSearch }) => {
         {movies.map((movie) => (
           <Col className="col-md-4 col-lg-2 px-1 mx-3" key={movie.imdbID}>
             <Card className="h-100 bg-black my-3">
-              <Card.Img
-                variant="top"
-                src={movie.Poster}
-                alt={movie.Title}
-                className="h-100 moviesImg my-2"
-              />
+              <Link to={"/movie-detail/" + movie.imdbID}>
+                <Card.Img
+                  variant="top"
+                  src={movie.Poster}
+                  alt={movie.Title}
+                  className="h-100 moviesImg my-2"
+                />
+              </Link>
             </Card>
           </Col>
         ))}
