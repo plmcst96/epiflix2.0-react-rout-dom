@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react"
-import { Card, Col, Container, Image, Row } from "react-bootstrap"
+import {
+  Alert,
+  Card,
+  Col,
+  Container,
+  Image,
+  Row,
+  Spinner,
+} from "react-bootstrap"
 import { useParams } from "react-router-dom"
 import Comments from "./Comments"
 import AddCommentMovie from "./AddCommentMovie"
@@ -8,6 +16,8 @@ const MovieDetails = () => {
   const params = useParams()
 
   const [movieDetail, setMovieDetail] = useState([])
+  const [isError, setIsError] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   const getOneMovie = async () => {
     try {
@@ -18,11 +28,16 @@ const MovieDetails = () => {
         const data = await res.json()
         console.log(data)
         setMovieDetail(data)
+        setTimeout(() => {
+          setIsLoading(false)
+        }, 800)
       } else {
         throw new Error("I dati del film non sono  stati trovati!")
       }
     } catch (error) {
       console.log(error)
+      setIsError(true)
+      setIsLoading(false)
     }
   }
 
@@ -35,6 +50,16 @@ const MovieDetails = () => {
     <>
       <Container fluid className="my-5">
         <Row className="d-flex justify-content-center align-items-center mx-4 mb-4">
+          {isLoading && (
+            <div className="text-center">
+              <Spinner animation="grow" style={{ color: "#cb121a" }} />
+            </div>
+          )}
+          {isError && (
+            <div className="text-center">
+              <Alert variant="danger">Ah Ah! Ci sei cascato!</Alert>
+            </div>
+          )}
           <Col className="col-10 border border-white rounded-2">
             <Row>
               <Col className="col-4 ps-0">
