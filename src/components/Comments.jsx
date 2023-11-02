@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { Card, Col } from "react-bootstrap"
+import { Button, Card, Col, Row } from "react-bootstrap"
+import { Person, Trash } from "react-bootstrap-icons"
 import { useParams } from "react-router-dom"
 
 const keyApi =
@@ -37,24 +38,28 @@ const Comments = () => {
   }, [])
 
   return (
-    <Col className="col-5 px-1 mx-3 ">
+    <Row className="d-flex justify-content-center align-items-center mt-4">
       {comment.map((comm) => (
-        <Card
-          className="my-3 bg-black p-2 border-1 border-white"
-          key={comm._id}
-        >
-          <Card.Body style={{ opacity: "0.6" }}>
-            <Card.Text className="text-white">
-              <span style={{ fontSize: "14px" }}>
-                <em> {comm.comment}</em>
-              </span>
-              <hr />
-              <span>{comm.rate}</span>
-            </Card.Text>
-          </Card.Body>
-        </Card>
+        <Col className="col-3 border border-white rounded-2 m-2" key={comm._id}>
+          <Row>
+            <Col className="col-2 ps-0 d-flex justify-content-center align-items-center ps-2 border-end">
+              <Person className="text-white fs-3" />
+            </Col>
+            <Card.Body className="col-4 p-2">
+              <p className="w-100" style={{ color: "#E50815" }}>
+                {comm.author}
+              </p>
+              <p className="text-white-50">
+                Rate:<em className="text-white"> {comm.rate}</em>
+              </p>
+              <Button variant="warning">
+                <Trash />
+              </Button>
+            </Card.Body>
+          </Row>
+        </Col>
       ))}
-    </Col>
+    </Row>
   )
 }
 export default Comments

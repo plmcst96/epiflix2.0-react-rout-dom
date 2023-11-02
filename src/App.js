@@ -26,7 +26,7 @@ function App() {
 
         <main>
           <Routes>
-            <Route element={<><GalleryMovie idSearch={'harry potter'} /><GalleryMovie idSearch={'Star Wars'} /><GalleryMovie idSearch={'Avengers'} /></>} path='/home' />
+            <Route element={<><GalleryMovie idSearch={'harry potter'} /><GalleryMovie idSearch={'Star Wars'} /><GalleryMovie idSearch={'Avengers'} /></>} path='/' />
             <Route element={<MovieDetails />} path='/movie-detail/:movieId' />
           </Routes>
         </main>

@@ -2,6 +2,18 @@
   text-align: center;
 }
 
+.pippo[placeholder] {
+  color: white;
+}
+
+.pippo[placeholder]::-webkit-input-placeholder {
+  color: rgb(177, 166, 166);
+}
+
+.pippo {
+  height: 30px;
+}
+
 .carousel-control-prev,
 .carousel-control-next {
   width: 4%;

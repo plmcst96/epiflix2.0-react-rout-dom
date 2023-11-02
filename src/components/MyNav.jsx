@@ -1,16 +1,25 @@
-import { Container, Dropdown, Image, Navbar } from "react-bootstrap"
+import {
+  Container,
+  Dropdown,
+  FormControl,
+  Image,
+  InputGroup,
+  Navbar,
+} from "react-bootstrap"
 import { ArrowDown, BellFill, Search } from "react-bootstrap-icons"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import image from "../assets/netflix_logo.png"
 import avatar from "../assets/kids_icon.png"
 import avatar2 from "../assets/avatar.png"
 
 const MyNav = () => {
+  const { pathname } = useLocation()
+
   return (
     <Container fluid>
       <Navbar expand="lg" className="navbar-dark bg-black p-0">
-        <Navbar.Brand href="#home">
-          <Link to="/home">
+        <Navbar.Brand>
+          <Link to="/">
             <Image src={image} style={{ width: "150px" }} />
           </Link>
         </Navbar.Brand>
@@ -28,9 +37,9 @@ const MyNav = () => {
         </span>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav bg-black">
-            <a className="nav-link text-white" aria-current="page" href="#home">
+            <Link to={"/"} className="nav-link text-white" aria-current="page">
               Home
-            </a>
+            </Link>
             <Link to="/tv-shows" className="nav-link text-white" href="#shows">
               TV Shows
             </Link>
@@ -49,7 +58,18 @@ const MyNav = () => {
           id="icone-right"
           className="d-flex flex-nowrap me-lg-5 align-items-center"
         >
-          <Search className="text-white me-2" />
+          <InputGroup>
+            <InputGroup.Text className="bg-black">
+              <Search className="text-white" />
+            </InputGroup.Text>
+            <FormControl
+              type="search"
+              className="me-2 bg-black pippo"
+              placeholder={
+                pathname === "/" ? "Search films..." : "Search Tv Series"
+              }
+            />
+          </InputGroup>
           <img src={avatar} alt="" style={{ width: "25px", height: "25px" }} />
           <BellFill className="text-white ms-2" />
           <Dropdown>

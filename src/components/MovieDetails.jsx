@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Card, Col, Container, Row } from "react-bootstrap"
+import { Card, Col, Container, Image, Row } from "react-bootstrap"
 import { useParams } from "react-router-dom"
 import Comments from "./Comments"
 
@@ -32,32 +32,39 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Container fluid>
-        <Row className="d-flex">
-          <Col className="col-6 px-1 mx-3 ">
-            <Card className="my-3 bg-black p-2 border-1 border-white">
-              <Card.Img
-                variant="top"
-                src={movieDetail.Poster}
-                className="h-50"
-              />
-              <Card.Body style={{ opacity: "0.6" }}>
-                <Card.Title style={{ fontSize: "19px" }} className="text-white">
-                  {movieDetail.Title} | <i>{movieDetail.Year}</i>
-                </Card.Title>
-                <Card.Text className="text-white">
-                  <span style={{ fontSize: "14px" }}>
-                    Actors:
-                    <em> {movieDetail.Actors}</em>
-                  </span>
-                  <hr />
-                  <span>{movieDetail.Plot}</span>
-                </Card.Text>
+      <Container fluid className="my-5">
+        <Row className="d-flex justify-content-center align-items-center mx-4 mb-4">
+          <Col className="col-10 border border-white rounded-2">
+            <Row>
+              <Col className="col-4 ps-0">
+                <Image
+                  src={movieDetail.Poster}
+                  className="w-100 rounded-start-2"
+                />
+              </Col>
+              <Card.Body className="col-4 p-4">
+                <h5 className="w-100" style={{ color: "#E50815" }}>
+                  {movieDetail.Title}
+                </h5>
+                <p className="text-white fw-bold">
+                  {movieDetail.Year} |<em> {movieDetail.Director}</em>
+                </p>
+                <p className="text-white-50">
+                  Actors:<em className="text-white"> {movieDetail.Actors}</em>
+                </p>
+                <p className="text-white-50">
+                  Awards:<em className="text-white"> {movieDetail.Awards}</em>
+                </p>
+                <p className="text-white-50">
+                  {movieDetail.BoxOffice} | {movieDetail.Runtime}
+                </p>
+                <hr className="text-white-50" />
+                <p className="text-white">{movieDetail.Plot}</p>
               </Card.Body>
-            </Card>
+            </Row>
           </Col>
-          <Comments />
         </Row>
+        <Comments />
       </Container>
     </>
   )
