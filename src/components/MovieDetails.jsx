@@ -50,20 +50,19 @@ const MovieDetails = () => {
     }
   }
 
-  //   useEffect(() => {
-  //     getOnComments()
-  //   }, [])
+  useEffect(() => {
+    getOnComments()
+  }, [])
 
   useEffect(() => {
     getOneMovie()
-    getOnComments()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <>
       <Container fluid>
-        <Row className="d-flex justify-content-center">
+        <Row className="d-flex">
           <Col className="col-6 px-1 mx-3 ">
             <Card className="my-3 bg-black p-2 border-1 border-white">
               <Card.Img
@@ -86,18 +85,23 @@ const MovieDetails = () => {
               </Card.Body>
             </Card>
           </Col>
-          <Col className="col-6 px-1 mx-3 ">
-            <Card className="my-3 bg-black p-2 border-1 border-white">
-              <Card.Body style={{ opacity: "0.6" }}>
-                <Card.Text className="text-white">
-                  <span style={{ fontSize: "14px" }}>
-                    <em> {comment.comment}</em>
-                  </span>
-                  <hr />
-                  <span>{comment.rate}</span>
-                </Card.Text>
-              </Card.Body>
-            </Card>
+          <Col className="col-5 px-1 mx-3 ">
+            {comment.map((comm) => (
+              <Card
+                className="my-3 bg-black p-2 border-1 border-white"
+                key={comm._id}
+              >
+                <Card.Body style={{ opacity: "0.6" }}>
+                  <Card.Text className="text-white">
+                    <span style={{ fontSize: "14px" }}>
+                      <em> {comm.comment}</em>
+                    </span>
+                    <hr />
+                    <span>{comm.rate}</span>
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            ))}
           </Col>
         </Row>
       </Container>
