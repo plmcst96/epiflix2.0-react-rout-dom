@@ -40,12 +40,15 @@ const Comments = () => {
   return (
     <Row className="d-flex justify-content-center align-items-center mt-4">
       {comment.map((comm) => (
-        <Col className="col-3 border border-white rounded-2 m-2" key={comm._id}>
+        <Col
+          className="col-6 col-md-4 border border-white rounded-2 m-2"
+          key={comm._id}
+        >
           <Row>
             <Col className="col-2 ps-0 d-flex justify-content-center align-items-center ps-2 border-end">
               <Person className="text-white fs-3" />
             </Col>
-            <Card.Body className="col-4 p-2">
+            <Card.Body className="col-10 p-2">
               <p className="w-100" style={{ color: "#E50815" }}>
                 {comm.author}
               </p>
