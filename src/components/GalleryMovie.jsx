@@ -26,7 +26,7 @@ class GalleryMovie extends Component {
       )
       if (res.ok) {
         const movie = await res.json()
-        console.log(movie)
+        // console.log(movie)
         this.setState({
           isLoading: false,
           movies: movie.Search,
