@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Card, Col, Container, Image, Row } from "react-bootstrap"
 import { useParams } from "react-router-dom"
 import Comments from "./Comments"
+import AddCommentMovie from "./AddCommentMovie"
 
 const MovieDetails = () => {
   const params = useParams()
@@ -65,6 +66,7 @@ const MovieDetails = () => {
           </Col>
         </Row>
         <Comments />
+        <AddCommentMovie />
       </Container>
     </>
   )
